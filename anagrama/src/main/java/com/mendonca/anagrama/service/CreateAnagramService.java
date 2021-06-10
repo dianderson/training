@@ -8,9 +8,9 @@ import java.util.List;
 @Service
 public class CreateAnagramService {
 
-    private void add(String word, List wordList) {
-        if (!wordList.contains(word)) {
-            wordList.add(word);
+    private void add(String word, List<String> list) {
+        if (!list.contains(word)) {
+            list.add(word);
         }
     }
 
@@ -23,12 +23,12 @@ public class CreateAnagramService {
         if (suffix.length() > 1) {
             wordList = createAnagram(suffix);
         } else {
-            add(suffix, wordList);
+            wordList.add(suffix);
         }
 
         for (String w : wordList) {
             for (int i = 0; i <= w.length(); i++) {
-                newWordList.add(w.substring(0, i) + prefix + w.substring(i));
+                add(w.substring(0, i) + prefix + w.substring(i), newWordList);
             }
         }
 
